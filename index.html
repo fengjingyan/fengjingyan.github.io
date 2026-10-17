@@ -71,6 +71,200 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Hexo Blog Setup &amp; Troubleshooting Guide" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/10/17/Hexo%20Blog%20Setup%20&%20Troubleshooting%20Guide/" class="article-date">
+  <time class="dt-published" datetime="2026-10-17T04:31:29.306Z" itemprop="datePublished">2026-10-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Hexo-GitHub-Pages-Typora-搭建技术博客极简指南（含踩坑全记录）"><a href="#Hexo-GitHub-Pages-Typora-搭建技术博客极简指南（含踩坑全记录）" class="headerlink" title="Hexo + GitHub Pages + Typora 搭建技术博客极简指南（含踩坑全记录）"></a>Hexo + GitHub Pages + Typora 搭建技术博客极简指南（含踩坑全记录）</h1><p>本文记录了基于 Hexo 框架、GitHub Pages 免费托管服务以及 Typora 编辑器搭建个人永久免费技术博客的完整全流程，并附带项目搭建过程中真实遇到的重磅“避坑指南”。</p>
+<hr>
+<h2 id="🛠️-第一阶段：本地环境准备与初始化"><a href="#🛠️-第一阶段：本地环境准备与初始化" class="headerlink" title="🛠️ 第一阶段：本地环境准备与初始化"></a>🛠️ 第一阶段：本地环境准备与初始化</h2><h3 id="1-安装基础核心工具"><a href="#1-安装基础核心工具" class="headerlink" title="1. 安装基础核心工具"></a>1. 安装基础核心工具</h3><p>Hexo 基于 Node.js 运行，并需要 Git 来提交代码。 </p>
+<ul>
+<li>前往 <a target="_blank" rel="noopener" href="https://nodejs.org/">Node.js 官网</a> 下载并安装 <strong>LTS（长期支持）版本</strong>。 </li>
+<li>前往 <a target="_blank" rel="noopener" href="https://git-scm.com/">Git 官网</a> 下载并安装。</li>
+</ul>
+<p>安装完成后，打开终端（Windows 推荐使用 Git Bash 或 PowerShell），运行以下命令验证是否安装成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">git --version</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-全局安装-Hexo-脚手架"><a href="#2-全局安装-Hexo-脚手架" class="headerlink" title="2. 全局安装 Hexo 脚手架"></a>2. 全局安装 Hexo 脚手架</h3><p>在终端中运行以下命令，将 Hexo 安装到电脑全局环境中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+
+<p><em>(注：Mac 用户若提示权限不足，请在前面加上 sudo，即 <code>sudo npm install -g hexo-cli</code>)</em></p>
+<h3 id="3-初始化博客项目"><a href="#3-初始化博客项目" class="headerlink" title="3. 初始化博客项目"></a>3. 初始化博客项目</h3><p>选择一个你想存放博客代码的本地文件夹，在终端中逐行运行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化一个名为 my-blog 的博客文件夹</span></span><br><span class="line">hexo init my-blog</span><br><span class="line"></span><br><span class="line"><span class="comment"># 进入该文件夹</span></span><br><span class="line"><span class="built_in">cd</span> my-blog</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装 Hexo 运行所需的依赖包</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-本地启动预览"><a href="#4-本地启动预览" class="headerlink" title="4. 本地启动预览"></a>4. 本地启动预览</h3><p>在博客根目录下运行以下命令，即可在本地电脑上预览博客的初始模样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+
+<p>打开浏览器访问 <code>http://localhost:4000</code> 即可看到欢迎界面。在终端中按下 <code>Ctrl + C</code> 可停止本地预览。</p>
+<hr>
+<h2 id="🌐-第二阶段：GitHub-Pages-免费托管配置"><a href="#🌐-第二阶段：GitHub-Pages-免费托管配置" class="headerlink" title="🌐 第二阶段：GitHub Pages 免费托管配置"></a>🌐 第二阶段：GitHub Pages 免费托管配置</h2><h3 id="1-创建-GitHub-仓库"><a href="#1-创建-GitHub-仓库" class="headerlink" title="1. 创建 GitHub 仓库"></a>1. 创建 GitHub 仓库</h3><ol>
+<li>登录你的 GitHub 账号。 </li>
+<li>点击右上角 <code>+</code> 号 -&gt; <strong>New repository</strong>。 </li>
+<li><strong>Repository name（仓库名）</strong> 必须严格填写：<code>你的用户名.github.io</code>（例如你的 GitHub 名字是 <code>zhangsan</code>，就填 <code>zhangsan.github.io</code>）。 </li>
+<li>勾选 <strong>Public</strong>（公开），其他保持默认，点击 <strong>Create repository</strong>。</li>
+</ol>
+<h3 id="2-安装一键部署插件"><a href="#2-安装一键部署插件" class="headerlink" title="2. 安装一键部署插件"></a>2. 安装一键部署插件</h3><p>在本地博客根目录下运行命令，安装自动化 Git 部署工具： </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-修改站点配置文件"><a href="#3-修改站点配置文件" class="headerlink" title="3. 修改站点配置文件"></a>3. 修改站点配置文件</h3><p>用文本编辑器打开博客根目录下的 <strong><code>_config.yml</code></strong>（站点配置文件），拉到最底部，修改 <code>deploy</code> 配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> <span class="string">https://github.com/你的用户名/你的用户名.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<p><em>(注：请务必检查你的 GitHub 仓库默认分支是 <code>main</code> 还是 <code>master</code>，并与 <code>branch</code> 字段保持一致。)</em></p>
+<hr>
+<h2 id="📝-第三阶段：高级配置与个性化定制"><a href="#📝-第三阶段：高级配置与个性化定制" class="headerlink" title="📝 第三阶段：高级配置与个性化定制"></a>📝 第三阶段：高级配置与个性化定制</h2><h3 id="1-切换博客主题"><a href="#1-切换博客主题" class="headerlink" title="1. 切换博客主题"></a>1. 切换博客主题</h3><ol>
+<li><p>在 <a target="_blank" rel="noopener" href="https://hexo.io/themes/">Hexo 官网主题页</a> 挑选喜欢的主题（如功能强大的 <code>NexT</code>、<code>Butterfly</code> 等）。</p>
+</li>
+<li><p>将主题克隆到博客根目录的 <code>themes/</code> 文件夹内。以 <code>NexT</code> 为例：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com themes/next</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开根目录下的 <strong>主配置文件 <code>_config.yml</code></strong>，找到 <code>theme</code> 字段并修改：</p>
+ <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">next</span>  <span class="comment"># 对应 themes 文件夹下的主题目录名</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="2-自定义页脚与去除-“Powered-by-Hexo”"><a href="#2-自定义页脚与去除-“Powered-by-Hexo”" class="headerlink" title="2. 自定义页脚与去除 “Powered by Hexo”"></a>2. 自定义页脚与去除 “Powered by Hexo”</h3><p>底部的版权信息由两部分组成，修改方法如下：</p>
+<ul>
+<li><p><strong>修改作者名字：</strong> 打开根目录 <strong><code>_config.yml</code></strong>，将 <code>author</code> 字段改为你自己的名字，页脚的 <code>© 2026 John Doe</code> 会自动同步更新。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">author:</span> <span class="string">Jeffrey</span>  <span class="comment"># 改为你的名字</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>隐藏 “Powered by Hexo”：</strong></p>
+<ul>
+<li><strong>新主题（如 NexT）：</strong> 打开主题独立的配置文件（如 <code>themes/next/_config.yml</code>），搜索 <code>powered</code>，将其设为 <code>false</code>。</li>
+<li><strong>默认主题（Landscape）：</strong> 打开 <code>themes/landscape/layout/_partial/footer.ejs</code>，删除或注释掉包含 <code>&lt;%- __(&#39;powered_by&#39;) %&gt; ... Hexo&lt;/a&gt;</code> 的代码行。</li>
+</ul>
+</li>
+<li><p>多语言环境配置（中&#x2F;英&#x2F;日）</p>
+<p>如果你希望博客系统自带文字（如侧边栏、阅读更多按钮）支持多语言，可以修改主配置文件 <code>_config.yml</code> 中的 <code>language</code> 字段：</p>
+<ul>
+<li><p><strong>方式一（多语言备用顺序）：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span> [<span class="string">zh-CN</span>, <span class="string">en</span>, <span class="string">ja</span>]  <span class="comment"># 优先中文，其次英文，最后日文</span></span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p><strong>方式二（搭建真正的多语言切换站点）：</strong><br>需要配合支持多语言切换的主题。在主配置中开启：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">zh-CN</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">en</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">ja</span></span><br></pre></td></tr></table></figure>
+
+<p>在写 Markdown 文章时，在顶部的 Front-matter 中通过 <code>lang: zh-CN</code> 或 <code>lang: ja</code> 来区分文章语种，并在主题配置文件中开启 <code>language_switcher: true</code> 开关。</p>
+</li>
+</ul>
+</li>
+<li><p>文章分类（Categories）管理</p>
+<p>Hexo 的分类具有严格的层级关系，在文章顶部的 Front-matter 中进行配置：</p>
+<ul>
+<li><p><strong>基础分类：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span> <span class="string">技术笔记</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>多级子分类（技术笔记 &gt; 前端）：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">技术笔记</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">前端</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>并列分类（同时属于两个独立的主分类）：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">categories:</span></span><br><span class="line">  <span class="bullet">-</span> [<span class="string">技术笔记</span>]</span><br><span class="line">  <span class="bullet">-</span> [<span class="string">个人随笔</span>]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>💡 <strong>提效技巧：</strong> 可以修改博客根目录下 <code>scaffolds/post.md</code> 模板文件，加上 <code>categories:</code> 这一行。这样每次运行 <code>hexo new</code> 时就会自动带上分类结构。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="📝-第四阶段：用-Typora-进行日常无缝写作"><a href="#📝-第四阶段：用-Typora-进行日常无缝写作" class="headerlink" title="📝 第四阶段：用 Typora 进行日常无缝写作"></a>📝 第四阶段：用 Typora 进行日常无缝写作</h2><h3 id="1-配置-Typora-方便管理博客图片"><a href="#1-配置-Typora-方便管理博客图片" class="headerlink" title="1. 配置 Typora 方便管理博客图片"></a>1. 配置 Typora 方便管理博客图片</h3><p>为了防止本地图片上传到 GitHub 网上后路径失效，请遵循以下核心配置：</p>
+<ol>
+<li><p>打开 Hexo 的 <code>_config.yml</code> 配置文件，找到 <code>post_asset_folder</code>，将其修改为 <code>true</code>： </p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">post_asset_folder:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>打开 <strong>Typora 软件</strong>，点击 <strong>设置 -&gt; 图像 (Image)</strong>： </p>
+<ul>
+<li>选择「插入图片时…」为：<strong>复制到当前音频&#x2F;视频&#x2F;图片所在文件夹 (Copy image to current folder)</strong>。 </li>
+<li>勾选：<strong>优先使用相对路径 (Use relative path if possible)</strong>。</li>
+</ul>
+</li>
+</ol>
+<h3 id="2-新建并编辑文章"><a href="#2-新建并编辑文章" class="headerlink" title="2. 新建并编辑文章"></a>2. 新建并编辑文章</h3><ol>
+<li><p>在本地博客终端运行命令新建一篇博文： </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new <span class="string">&quot;我的第一篇技术博客&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Hexo 会在 <code>source/_posts/</code> 目录下自动生成 <code>我的第一篇技术博客.md</code> 文件以及一个同名的媒体资产文件夹。 </p>
+</li>
+<li><p>用 Typora 打开 <code>.md</code> 文件即可进行图文并茂的舒适写作。</p>
+</li>
+</ol>
+<hr>
+<h2 id="🚀-第五阶段：一键编译与发布上线"><a href="#🚀-第五阶段：一键编译与发布上线" class="headerlink" title="🚀 第五阶段：一键编译与发布上线"></a>🚀 第五阶段：一键编译与发布上线</h2><p>文章写完并保存后，回到本地博客的终端根路径下，依次运行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 清理缓存、生成静态网页并一键部署到 GitHub</span></span><br><span class="line">hexo clean &amp;&amp; hexo g -d</span><br></pre></td></tr></table></figure>
+
+<p>发布成功后，等待 1~2 分钟，即可在浏览器中通过 <code>https://你的用户名.github.io</code> 访问你的个人技术博客！ </p>
+<hr>
+<h2 id="⚠️-真实踩坑记录与极致避坑指南"><a href="#⚠️-真实踩坑记录与极致避坑指南" class="headerlink" title="⚠️ 真实踩坑记录与极致避坑指南"></a>⚠️ 真实踩坑记录与极致避坑指南</h2><p>在搭建和初次部署时，遇到了几个极为经典的报错，在此整理成血泪避坑指南： </p>
+<h3 id="🛑-坑一：安装-Git-部署插件时-npm-意外崩溃"><a href="#🛑-坑一：安装-Git-部署插件时-npm-意外崩溃" class="headerlink" title="🛑 坑一：安装 Git 部署插件时 npm 意外崩溃"></a>🛑 坑一：安装 Git 部署插件时 npm 意外崩溃</h3><ul>
+<li><p><strong>报错现象：</strong> 运行 <code>npm install hexo-deployer-git --save</code> 时弹出一大串红字：<code>npm error Cannot read properties of null (reading &#39;matches&#39;)</code>。 </p>
+</li>
+<li><p><strong>原因分析：</strong> 本地 npm 缓存严重混乱，或项目根目录残留了不兼容的锁文件。 </p>
+</li>
+<li><p><strong>终极解法：</strong> 彻底大扫除！直接在终端运行以下组合命令，删掉冲突文件并强制洗干净本地缓存，然后再重新安装： </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> -rf node_modules package-lock.json pnpm-lock.yaml yarn.lock</span><br><span class="line">npm cache clean --force</span><br><span class="line">npm install</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="🛑-坑二：部署时遇到-Permission-Denied-拒绝访问"><a href="#🛑-坑二：部署时遇到-Permission-Denied-拒绝访问" class="headerlink" title="🛑 坑二：部署时遇到 Permission Denied 拒绝访问"></a>🛑 坑二：部署时遇到 Permission Denied 拒绝访问</h3><ul>
+<li><strong>报错现象：</strong> 运行 <code>hexo d</code> 提示 <code>git@github.com: Permission denied (publickey). fatal: Could not read from remote repository.</code> 且报错 <code>Error: Spawn failed</code>。 </li>
+<li><strong>原因分析：</strong> 配置文件里写的是 SSH 格式的地址（<code>git@github.com:...</code>），但本地电脑压根没有配置或绑定过 GitHub 的 SSH 公钥。 </li>
+<li><strong>终极解法：</strong> <ul>
+<li><strong>最快解法（推荐）：</strong> 放弃 SSH，改用更容易通过的 HTTPS 协议。直接打开 <code>_config.yml</code> 把 <code>repository</code> 这一行改成 <code>https://github.com/你的用户名/你的用户名.github.io.git</code>。首次推送时直接点击弹窗授权 GitHub 登录即可。 </li>
+<li><strong>硬核解法：</strong> 在本地终端运行 <code>ssh-keygen -t ed25519 -C &quot;你的邮箱&quot;</code> 生成公钥，通过 <code>cat ~/.ssh/id_ed25519.pub</code> 复制其内容，进入 GitHub 官网 <code>Settings -&gt; SSH and GPG keys -&gt; New SSH key</code> 把它粘贴进去绑定。</li>
+</ul>
+</li>
+</ul>
+<h3 id="🛑-坑三：网页部署成功，但图片全裂开了"><a href="#🛑-坑三：网页部署成功，但图片全裂开了" class="headerlink" title="🛑 坑三：网页部署成功，但图片全裂开了"></a>🛑 坑三：网页部署成功，但图片全裂开了</h3><ul>
+<li><strong>报错现象：</strong> 本地用 Typora 写文章时截图看得好好的，一推送到 GitHub 线上，文章里的所有图全部显示成红叉或无法加载。 </li>
+<li><strong>原因分析：</strong> 图片默认使用了本地电脑的绝对路径（如 <code>C:\Users\admin\...</code>），传到网上后服务器无法识别。 </li>
+<li><strong>终极解法：</strong> 必须在站点的 <code>_config.yml</code> 中开启资源文件夹功能 <code>post_asset_folder: true</code>。同时，进入 Typora 的 <strong>设置 -&gt; 图像</strong> 菜单，将插入图片行为严格设置为 <strong>“复制到当前图片所在文件夹”</strong>，并务必勾选 <strong>“优先使用相对路径”</strong>。这样生成的路径才会长成标准的相对格式 <code>![](文章同名文件夹/图片名.png)</code>。</li>
+</ul>
+<h3 id="🛑-坑四：安装-hexo-cli-或全局审批脚本时提示不匹配-ENOMATCH"><a href="#🛑-坑四：安装-hexo-cli-或全局审批脚本时提示不匹配-ENOMATCH" class="headerlink" title="🛑 坑四：安装 hexo-cli 或全局审批脚本时提示不匹配 (ENOMATCH)"></a>🛑 坑四：安装 hexo-cli 或全局审批脚本时提示不匹配 (<code>ENOMATCH</code>)</h3><ul>
+<li><p><strong>报错现象：</strong> 执行 <code>npm approve-scripts hexo-util</code> 时报错 <code>npm error No installed packages match: hexo-util</code>。</p>
+</li>
+<li><p><strong>原因分析：</strong> 你的 <code>hexo-cli</code> 是通过全局（<code>-g</code>）安装的，npm 默认会在当前本地目录下寻找该依赖，从而导致找不到匹配包。</p>
+</li>
+<li><p><strong>解法：</strong> 在审批命令后同样加上全局标志 <code>-g</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm approve-scripts hexo-util -g</span><br></pre></td></tr></table></figure>
+
+<p>或者在安装时直接跳过审查强制允许脚本：<code>npm install -g hexo-cli --allow-scripts</code>。</p>
+</li>
+</ul>
+<h3 id="🛑-坑五：hexo-init-依赖安装失败，抛出-ERR-PNPM-IGNORED-BUILDS"><a href="#🛑-坑五：hexo-init-依赖安装失败，抛出-ERR-PNPM-IGNORED-BUILDS" class="headerlink" title="🛑 坑五：hexo init 依赖安装失败，抛出 ERR_PNPM_IGNORED_BUILDS"></a>🛑 坑五：<code>hexo init</code> 依赖安装失败，抛出 <code>ERR_PNPM_IGNORED_BUILDS</code></h3><ul>
+<li><p><strong>报错现象：</strong> 初始化博客时提示 <code>Ignored build scripts: hexo-util...</code> 并警告失败，要求使用 <code>npm install</code>。</p>
+</li>
+<li><p><strong>原因分析：</strong> 本地环境的 <code>pnpm</code> 开启了严格的构建脚本安全限制，拦截了 Hexo 依赖项（如 <code>hexo-util</code>）自动执行的 <code>postinstall</code> 编译脚本。</p>
+</li>
+<li><p><strong>解法：</strong> 进入初始化好的博客根目录，使用以下任一方案解决：</p>
+<ul>
+<li><p><strong>方案 A（最简便）：</strong> 听从 Hexo 官方警告指引，降级使用 <code>npm</code> 重新补全依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="string">&quot;你的博客绝对路径&quot;</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>方案 B（继续用 pnpm）：</strong> 在当前目录下运行 <code>pnpm approve-builds</code> 批准这些脚本，然后再重新执行 <code>pnpm install</code>。</p>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/10/17/Hexo%20Blog%20Setup%20&%20Troubleshooting%20Guide/" data-id="cuiddleGzqTsPkWamBGY16-QH" data-title="" class="article-share-link"><span class="fa fa-share">分享</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-Jeffrey-s-technology-blog" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2026/10/16/Jeffrey-s-technology-blog/" class="article-date">
@@ -189,6 +383,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2026/10/17/Hexo%20Blog%20Setup%20&%20Troubleshooting%20Guide/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2026/10/16/Jeffrey-s-technology-blog/">Jeffrey&#39;s technology blog</a>
